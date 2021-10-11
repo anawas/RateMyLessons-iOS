@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    let buttonSize = UIScreen.main.bounds.width / 6.0 + 20
+    @State var myView = VotingView()
+    var body: some View {
+        myView
+    }
+}
+
+struct VotingView: View {
     
     var body: some View {
         VStack {
