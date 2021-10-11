@@ -18,11 +18,11 @@ struct ContentView: View {
                 .fontWeight(.bold)
             Spacer()
             HStack {
-                Image("pushbutton very good").resizable().aspectRatio(contentMode: .fill).frame(width: buttonSize, height: buttonSize)
-                Image("pushbutton good").resizable().aspectRatio(contentMode: .fill).frame(width: buttonSize, height: buttonSize)
-                Image("pushbutton ok").resizable().aspectRatio(contentMode: .fill).frame(width: buttonSize, height: buttonSize)
-                Image("pushbutton bad").resizable().aspectRatio(contentMode: .fill).frame(width: buttonSize, height: buttonSize)
-                Image("pushbutton very bad").resizable().aspectRatio(contentMode: .fill).frame(width: buttonSize, height: buttonSize)
+                VotingButton(verdict: "very good")
+                VotingButton(verdict: "good")
+                VotingButton(verdict: "ok")
+                VotingButton(verdict: "bad")
+                VotingButton(verdict: "very bad")
             }
             Spacer()
             HStack {
@@ -33,6 +33,21 @@ struct ContentView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 120.0, height: 120.0)
             }
+        }
+    }
+}
+
+struct VotingButton: View {
+    let buttonSize = UIScreen.main.bounds.width / 6.0 + 20
+    let verdict: String
+    
+    var body: some View {
+        Button {
+            print("Button \(verdict) pressed")
+        } label: {
+            Image("pushbutton " + verdict)
+                .resizable().aspectRatio(contentMode: .fill)
+                .frame(width: buttonSize, height: buttonSize)
         }
     }
 }
