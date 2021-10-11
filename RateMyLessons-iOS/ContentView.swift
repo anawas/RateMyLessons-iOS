@@ -33,11 +33,18 @@ struct ContentView: View {
     }
 }
 
-
 struct NextViewButton: View {
+    @State var numberOfClicks: Int = 0
+    @State var timer: Timer?
+    
     var body: some View {
         Button {
-            print("Switching to next view")
+            timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+                numberOfClicks = 0}
+            numberOfClicks += 1
+            if numberOfClicks == 4 {
+                print("Switching to next view")
+            }
         } label: {
             Image(systemName: "chevron.right.circle")
                 .resizable()
