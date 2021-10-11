@@ -13,26 +13,37 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("Wie waren meine Lektionen heute?")
+            Text("Wie fanden Sie meine Lektionen heute?")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Spacer()
             HStack {
-                VotingButton(verdict: "very good")
-                VotingButton(verdict: "good")
-                VotingButton(verdict: "ok")
-                VotingButton(verdict: "bad")
-                VotingButton(verdict: "very bad")
+                VotingButton(verdict: "very good").tag(1)
+                VotingButton(verdict: "good").tag(2)
+                VotingButton(verdict: "ok").tag(3)
+                VotingButton(verdict: "bad").tag(4)
+                VotingButton(verdict: "very bad").tag(5)
             }
             Spacer()
             HStack {
                 Spacer()
-                Image(systemName: "chevron.right.circle")
-                    .resizable()
-                    .padding(30)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 120.0, height: 120.0)
+                NextViewButton().foregroundColor(Color.black)
             }
+        }
+    }
+}
+
+
+struct NextViewButton: View {
+    var body: some View {
+        Button {
+            print("Switching to next view")
+        } label: {
+            Image(systemName: "chevron.right.circle")
+                .resizable()
+                .padding(30)
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 120.0, height: 120.0)
         }
     }
 }
