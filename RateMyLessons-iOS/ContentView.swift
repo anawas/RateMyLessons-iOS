@@ -8,16 +8,60 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var myView = VotingView()
-    var body: some View {
-        myView
-    }
-}
-
-struct VotingView: View {
+    let dummyView: some View = DummyView().view
+    let votingView: some View = VotingView().view
+    @State var timer: Timer?
+    @State var numberOfClicks: Int = 0
+    @State var showDummyView: Bool = false
+    @State var icon: String = "chevron.right.circle"
     
     var body: some View {
         VStack {
+            if showDummyView {
+                dummyView
+            } else {
+                votingView
+            }
+            Spacer()
+            HStack{
+                Spacer()
+                Button {
+                    timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+                        numberOfClicks = 0}
+                    numberOfClicks += 1
+                    if numberOfClicks == 4 {
+                        print("Switching to next view")
+                        showDummyView.toggle()
+                        if showDummyView {
+                            icon = "chevron.left.circle"
+                        } else {
+                            icon = "chevron.right.circle"
+                        }
+                    }
+                } label: {
+                    Image(systemName: icon)
+                        .resizable()
+                        .padding(30)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120.0, height: 120.0)
+                }
+            }
+        }
+    }
+}
+
+struct DummyView {
+    var view: some View {
+        return Text("This is a dummy view")
+            .font(.largeTitle)
+            .fontWeight(.heavy)
+    }
+}
+
+
+struct VotingView {
+    var view: some View {
+        return VStack {
             Spacer()
             Text("Wie fanden Sie meine Lektionen heute?")
                 .font(.largeTitle)
@@ -31,10 +75,7 @@ struct VotingView: View {
                 VotingButton(verdict: "very bad").tag(5)
             }
             Spacer()
-            HStack {
-                Spacer()
-                NextViewButton().foregroundColor(Color.black)
-            }
+            
         }
     }
 }
