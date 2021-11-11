@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import AVFoundation
+
+let systemSoundID: SystemSoundID = 1104  // System sound Tock
 
 struct ContentView: View {
     let dummyView: some View = DummyView().view
@@ -110,10 +113,12 @@ struct VotingButton: View {
     var body: some View {
         Button {
             print("Button \(verdict) pressed")
+            AudioServicesPlaySystemSound(systemSoundID)
         } label: {
             Image("pushbutton " + verdict)
                 .resizable().aspectRatio(contentMode: .fill)
                 .frame(width: buttonSize, height: buttonSize)
+                .rotationEffect(.degrees(-20.0))
         }
     }
 }
