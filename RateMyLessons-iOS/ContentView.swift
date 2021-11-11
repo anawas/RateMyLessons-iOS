@@ -9,6 +9,11 @@ import SwiftUI
 import AVFoundation
 
 let systemSoundID: SystemSoundID = 1104  // System sound Tock
+var votings: [String:Int32] = ["very good": 0,
+                               "good": 0,
+                               "ok": 0,
+                               "bad": 0,
+                               "very bad": 0]
 
 struct ContentView: View {
     let dummyView: some View = DummyView().view
@@ -17,6 +22,7 @@ struct ContentView: View {
     @State var numberOfClicks: Int = 0
     @State var showDummyView: Bool = false
     @State var icon: String = "chevron.right.circle"
+    
     
     var body: some View {
         VStack {
@@ -55,6 +61,9 @@ struct ContentView: View {
 
 struct DummyView {
     var view: some View {
+        for (key, value) in votings {
+            print("(\(key),\(value))")
+        }
         return Text("This is a dummy view")
             .font(.largeTitle)
             .fontWeight(.heavy)
@@ -62,7 +71,8 @@ struct DummyView {
 }
 
 
-// Push buttons created with http://www.holshousersoftware.com/glass/
+// Glass like Push buttons created with http://www.holshousersoftware.com/glass/
+// Others by https://www.imagefu.com/create/badge
 struct VotingView {
     var view: some View {
         return VStack {
@@ -114,6 +124,9 @@ struct VotingButton: View {
         Button {
             print("Button \(verdict) pressed")
             AudioServicesPlaySystemSound(systemSoundID)
+            var count = votings[verdict]
+            count = count!+1
+            votings[verdict] = count
         } label: {
             Image("pushbutton " + verdict)
                 .resizable().aspectRatio(contentMode: .fill)
