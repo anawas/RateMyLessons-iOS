@@ -59,6 +59,7 @@ struct DummyView {
 }
 
 
+// Push buttons created with http://www.holshousersoftware.com/glass/
 struct VotingView {
     var view: some View {
         return VStack {
