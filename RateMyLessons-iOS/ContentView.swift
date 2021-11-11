@@ -15,15 +15,24 @@ var votings: [String:Int32] = ["very good": 0,
                                "bad": 0,
                                "very bad": 0]
 
+let translations: [String:String] = [
+    "very good": "inspirierend",
+    "good": "gut",
+    "ok": "war OK",
+    "bad": "uninteressant",
+    "very bad": "schlecht"
+]
+
 struct ContentView: View {
-    let dummyView: some View = DummyView().view
-    let votingView: some View = VotingView().view
     @State var timer: Timer?
     @State var numberOfClicks: Int = 0
     @State var showDummyView: Bool = false
     @State var icon: String = "chevron.right.circle"
-    
-    
+
+
+    let dummyView: some View = DummyView().view
+    let votingView: some View = VotingView().view
+
     var body: some View {
         VStack {
             if showDummyView {
@@ -61,17 +70,16 @@ struct ContentView: View {
 
 struct DummyView {
     var view: some View {
-        for (key, value) in votings {
-            print("(\(key),\(value))")
+        return VStack {
+            Spacer()
+            Text("This is a dummy view")
+            Spacer()
         }
-        return Text("This is a dummy view")
-            .font(.largeTitle)
-            .fontWeight(.heavy)
     }
 }
 
 
-// Glass like Push buttons created with http://www.holshousersoftware.com/glass/
+// Glass like push buttons created with http://www.holshousersoftware.com/glass/
 // Others by https://www.imagefu.com/create/badge
 struct VotingView {
     var view: some View {
@@ -89,7 +97,6 @@ struct VotingView {
                 VotingButton(verdict: "very bad").tag(5)
             }
             Spacer()
-            
         }
     }
 }
@@ -128,17 +135,24 @@ struct VotingButton: View {
             count = count!+1
             votings[verdict] = count
         } label: {
+            ZStack {
             Image("pushbutton " + verdict)
                 .resizable().aspectRatio(contentMode: .fill)
                 .frame(width: buttonSize, height: buttonSize)
                 .rotationEffect(.degrees(-20.0))
+            Text("\(translations[verdict]!)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            }
+            
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        VotingView().view
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
