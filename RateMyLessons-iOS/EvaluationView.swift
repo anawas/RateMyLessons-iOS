@@ -20,5 +20,6 @@ struct EvaluationView: View {
 struct EvaluationView_Previews: PreviewProvider {
     static var previews: some View {
         EvaluationView()
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }

@@ -6,14 +6,12 @@
 //
 
 import SwiftUI
-import AVFoundation
 
-let systemSoundID: SystemSoundID = 1104  // System sound Tock
 var votings: [String:Int32] = ["very good": 0,
-                               "good": 0,
-                               "ok": 0,
-                               "bad": 0,
-                               "very bad": 0]
+                                        "good": 0,
+                                        "ok": 0,
+                                        "bad": 0,
+                                        "very bad": 0]
 
 let translations: [String:String] = [
     "very good": "inspirierend",
@@ -90,32 +88,6 @@ struct NextViewButton: View {
     }
 }
 
-struct VotingButton: View {
-    let buttonSize = UIScreen.main.bounds.width / 6.0 + 20
-    let verdict: String
-    
-    var body: some View {
-        Button {
-            print("Button \(verdict) pressed")
-            AudioServicesPlaySystemSound(systemSoundID)
-            var count = votings[verdict]
-            count = count!+1
-            votings[verdict] = count
-        } label: {
-            ZStack {
-            Image("pushbutton " + verdict)
-                .resizable().aspectRatio(contentMode: .fill)
-                .frame(width: buttonSize, height: buttonSize)
-                .rotationEffect(.degrees(-20.0))
-            Text("\(translations[verdict]!)")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-            }
-            
-        }
-    }
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

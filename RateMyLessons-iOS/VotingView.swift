@@ -33,5 +33,6 @@ struct VotingView: View {
 struct VotingView_Previews: PreviewProvider {
     static var previews: some View {
         VotingView()
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }
