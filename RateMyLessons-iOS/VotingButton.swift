@@ -13,14 +13,13 @@ let systemSoundID: SystemSoundID = 1104  // System sound Tock
 struct VotingButton: View {
     let buttonSize = UIScreen.main.bounds.width / 6.0 + 20
     let verdict: String
-    
+    @ObservedObject var votingVM = VotingsVewModel()
+
     var body: some View {
         Button {
             print("Button \(verdict) pressed")
             AudioServicesPlaySystemSound(systemSoundID)
-            var count = votings[verdict]
-            count = count!+1
-            votings[verdict] = count
+            votingVM.increaseVote(verdict: verdict)
         } label: {
             ZStack {
             Image("pushbutton " + verdict)

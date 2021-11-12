@@ -8,10 +8,20 @@
 import SwiftUI
 
 struct EvaluationView: View {
+    @ObservedObject var votingVM = VotingsVewModel()
+
     var body: some View {
         return VStack {
             Spacer()
-            Text("This is a dummy view")
+            Text("Abgegebene Stimmen: \(votingVM.countVotes())")
+                .font(.title)
+                .fontWeight(.bold)
+            Spacer()
+            ForEach(votingVM.votings) { vote in
+                Text("\(vote.verdict): \(vote.count)")
+                    .font(.title)
+                    .fontWeight(.bold)
+            }
             Spacer()
         }
     }
