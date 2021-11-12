@@ -30,13 +30,13 @@ struct ContentView: View {
     @State var icon: String = "chevron.right.circle"
 
 
-    let dummyView: some View = DummyView().view
-    let votingView: some View = VotingView().view
+    let evaluationView: some View = EvaluationView()
+    let votingView: some View = VotingView()
 
     var body: some View {
         VStack {
             if showDummyView {
-                dummyView
+                evaluationView
             } else {
                 votingView
             }
@@ -64,39 +64,6 @@ struct ContentView: View {
                         .frame(width: 120.0, height: 120.0)
                 }
             }
-        }
-    }
-}
-
-struct DummyView {
-    var view: some View {
-        return VStack {
-            Spacer()
-            Text("This is a dummy view")
-            Spacer()
-        }
-    }
-}
-
-
-// Glass like push buttons created with http://www.holshousersoftware.com/glass/
-// Others by https://www.imagefu.com/create/badge
-struct VotingView {
-    var view: some View {
-        return VStack {
-            Spacer()
-            Text("Wie fanden Sie meine Lektionen heute?")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            Spacer()
-            HStack {
-                VotingButton(verdict: "very good").tag(1)
-                VotingButton(verdict: "good").tag(2)
-                VotingButton(verdict: "ok").tag(3)
-                VotingButton(verdict: "bad").tag(4)
-                VotingButton(verdict: "very bad").tag(5)
-            }
-            Spacer()
         }
     }
 }
@@ -152,7 +119,7 @@ struct VotingButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        VotingView().view
+        VotingView()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

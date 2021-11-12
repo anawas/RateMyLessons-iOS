@@ -11,6 +11,8 @@
 		E15C59EC271365BF00667903 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15C59EB271365BF00667903 /* ContentView.swift */; };
 		E15C59EE271365C000667903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E15C59ED271365C000667903 /* Assets.xcassets */; };
 		E15C59F1271365C000667903 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E15C59F0271365C000667903 /* Preview Assets.xcassets */; };
+		E1EAECF9273E4C06008EE33B /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EAECF8273E4C06008EE33B /* VotingView.swift */; };
+		E1EAECFB273E54ED008EE33B /* EvaluationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EAECFA273E54ED008EE33B /* EvaluationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		E15C59EB271365BF00667903 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E15C59ED271365C000667903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E15C59F0271365C000667903 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E1EAECF8273E4C06008EE33B /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
+		E1EAECFA273E54ED008EE33B /* EvaluationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				E15C59EB271365BF00667903 /* ContentView.swift */,
 				E15C59ED271365C000667903 /* Assets.xcassets */,
 				E15C59EF271365C000667903 /* Preview Content */,
+				E1EAECF8273E4C06008EE33B /* VotingView.swift */,
+				E1EAECFA273E54ED008EE33B /* EvaluationView.swift */,
 			);
 			path = "RateMyLessons-iOS";
 			sourceTree = "<group>";
@@ -139,7 +145,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1EAECF9273E4C06008EE33B /* VotingView.swift in Sources */,
 				E15C59EC271365BF00667903 /* ContentView.swift in Sources */,
+				E1EAECFB273E54ED008EE33B /* EvaluationView.swift in Sources */,
 				E15C59EA271365BF00667903 /* RateMyLessons_iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
