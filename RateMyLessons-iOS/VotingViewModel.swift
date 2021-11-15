@@ -13,10 +13,12 @@ class Vote: Identifiable {
     let id = UUID()
     var verdict: String
     var count: Int
+    var ranking: Int
     
-    init(verdict: String) {
+    init(verdict: String, ranking: Int) {
         self.verdict = verdict
         self.count = 0
+        self.ranking = ranking
     }
     
     func getVerdict() -> String {
@@ -30,11 +32,11 @@ class VotingsViewModel: ObservableObject {
     @Published var votings: [Vote] = []
         
     init() {
-        self.votings.append(Vote(verdict: "very good"))
-        self.votings.append(Vote(verdict: "good"))
-        self.votings.append(Vote(verdict: "ok"))
-        self.votings.append(Vote(verdict: "bad"))
-        self.votings.append(Vote(verdict: "very bad"))
+        self.votings.append(Vote(verdict: "very good", ranking: 5))
+        self.votings.append(Vote(verdict: "good", ranking: 4))
+        self.votings.append(Vote(verdict: "ok", ranking: 3))
+        self.votings.append(Vote(verdict: "bad", ranking: 2))
+        self.votings.append(Vote(verdict: "very bad", ranking: 1))
     }
     
     func increaseVote(verdict: String) -> Void {
@@ -56,10 +58,23 @@ class VotingsViewModel: ObservableObject {
         //print("Total votes: \(self.votesCounter)")
     }
     
+    func calculateAverage() -> Void {
+        var sum = 0
+        for vote in votings {
+            sum += vote.ranking*vote.count
+        }
+        if self.votesCounter == 0 {
+            self.averageRating = 0.0
+        } else {
+            self.averageRating = Float(sum)/Float(self.votesCounter)
+        }
+    }
+    
     func resetCounter() -> Void {
         self.votesCounter = 0
         for vote in votings {
             vote.count = 0
         }
+        self.averageRating = 0.0
     }
 }

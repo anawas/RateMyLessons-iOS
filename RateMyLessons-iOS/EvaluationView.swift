@@ -30,6 +30,14 @@ struct EvaluationView: View {
                             .foregroundColor(.red)
                     }
                 }
+                HStack {
+                    Text("Durchschnittliche Bewertung: ")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Text(String(format: "%.1f", self.votingData.averageRating))
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
             }.padding(100)
             Spacer()
             Button(action: {
@@ -38,7 +46,9 @@ struct EvaluationView: View {
                 Text("Zurücksetzen")
                     .font(.title)
             })
-        }
+        }.onAppear(perform: {
+            self.votingData.calculateAverage()
+        })
     }
 }
 
