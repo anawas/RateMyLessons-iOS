@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class Vote: Identifiable {
     
     let id = UUID()
@@ -25,6 +26,7 @@ class Vote: Identifiable {
 
 class VotingsViewModel: ObservableObject {
     @Published var votesCounter = 0
+    @Published var averageRating:Float = 0.0
     @Published var votings: [Vote] = []
         
     init() {
@@ -39,8 +41,8 @@ class VotingsViewModel: ObservableObject {
         for vote in votings {
             if vote.verdict == verdict {
                 vote.count += 1
-                print("Updating verdict: \(vote.verdict)")
-                print("New count       : \(vote.count)")
+                //print("Updating verdict: \(vote.verdict)")
+                //print("New count       : \(vote.count)")
             }
         }
         self.countVotes()
@@ -51,7 +53,7 @@ class VotingsViewModel: ObservableObject {
         for vote in votings {
             self.votesCounter += vote.count
         }
-        print("Total votes: \(self.votesCounter)")
+        //print("Total votes: \(self.votesCounter)")
     }
     
     func resetCounter() -> Void {

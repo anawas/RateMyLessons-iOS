@@ -18,7 +18,6 @@ struct VotingButton: View {
 
     var body: some View {
         Button {
-            print("Button \(verdict) pressed")
             AudioServicesPlaySystemSound(systemSoundID)
             votingVM.increaseVote(verdict: self.verdict)
         } label: {

@@ -38,7 +38,6 @@ struct ContentView: View {
                         numberOfClicks = 0}
                     numberOfClicks += 1
                     if numberOfClicks == 4 {
-                        print("Switching to next view")
                         showDummyView.toggle()
                         if showDummyView {
                             icon = "chevron.left.circle"
@@ -69,7 +68,6 @@ struct NextViewButton: View {
                 numberOfClicks = 0}
             numberOfClicks += 1
             if numberOfClicks == 4 {
-                print("Switching to next view")
             }
         } label: {
             Image(systemName: "chevron.right.circle")
