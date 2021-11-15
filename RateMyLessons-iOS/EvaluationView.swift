@@ -23,15 +23,21 @@ struct EvaluationView: View {
                     .fontWeight(.bold)
             }
             Spacer()
+            Button(action: {
+                votingData.resetCounter()
+            }, label: {
+                Text("Zurücksetzen")
+                    .font(.title)
+            })
         }
     }
 }
 
-/*
+
 struct EvaluationView_Previews: PreviewProvider {
+    @ObservedObject var votingData: VotingsViewModel
     static var previews: some View {
-        EvaluationView()
+        EvaluationView(votingData: VotingsViewModel())
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
-*/

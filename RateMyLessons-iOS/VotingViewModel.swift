@@ -53,4 +53,11 @@ class VotingsViewModel: ObservableObject {
         }
         print("Total votes: \(self.votesCounter)")
     }
+    
+    func resetCounter() -> Void {
+        self.votesCounter = 0
+        for vote in votings {
+            vote.count = 0
+        }
+    }
 }
