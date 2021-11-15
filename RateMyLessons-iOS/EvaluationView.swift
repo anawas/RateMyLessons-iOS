@@ -17,11 +17,20 @@ struct EvaluationView: View {
                 .font(.title)
                 .fontWeight(.bold)
             Spacer()
-            ForEach(self.votingData.votings) { vote in
-                Text("\(vote.verdict): \(vote.count)")
-                    .font(.title)
-                    .fontWeight(.bold)
-            }
+            List {
+                ForEach(self.votingData.votings) { vote in
+                    HStack {
+                        Text(vote.verdict)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Text("\(vote.count)")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.red)
+                    }
+                }
+            }.padding(100)
             Spacer()
             Button(action: {
                 votingData.resetCounter()
