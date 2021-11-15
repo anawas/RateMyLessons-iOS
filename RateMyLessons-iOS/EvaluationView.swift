@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct EvaluationView: View {
-    @ObservedObject var votingVM = VotingsVewModel()
+    @ObservedObject var votingData: VotingsViewModel
 
     var body: some View {
         return VStack {
             Spacer()
-            Text("Abgegebene Stimmen: \(votingVM.countVotes())")
+            Text("Abgegebene Stimmen: \(votingData.votesCounter)")
                 .font(.title)
                 .fontWeight(.bold)
             Spacer()
-            ForEach(votingVM.votings) { vote in
+            ForEach(self.votingData.votings) { vote in
                 Text("\(vote.verdict): \(vote.count)")
                     .font(.title)
                     .fontWeight(.bold)
@@ -27,9 +27,11 @@ struct EvaluationView: View {
     }
 }
 
+/*
 struct EvaluationView_Previews: PreviewProvider {
     static var previews: some View {
         EvaluationView()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
+*/

@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+
 // Glass like push buttons created with http://www.holshousersoftware.com/glass/
 // Others by https://www.imagefu.com/create/badge
 
 struct VotingView: View {
+    @ObservedObject var votingData: VotingsViewModel
+    
     var body: some View {
         return VStack {
             Spacer()
@@ -19,20 +22,22 @@ struct VotingView: View {
                 .fontWeight(.bold)
             Spacer()
             HStack {
-                VotingButton(verdict: "very good").tag(1)
-                VotingButton(verdict: "good").tag(2)
-                VotingButton(verdict: "ok").tag(3)
-                VotingButton(verdict: "bad").tag(4)
-                VotingButton(verdict: "very bad").tag(5)
+                VotingButton(verdict: "very good", votingVM: votingData).tag(1)
+                VotingButton(verdict: "good", votingVM: votingData).tag(2)
+                VotingButton(verdict: "ok", votingVM: votingData).tag(3)
+                VotingButton(verdict: "bad", votingVM: votingData).tag(4)
+                VotingButton(verdict: "very bad", votingVM: votingData).tag(5)
             }
             Spacer()
         }
     }
 }
 
+/*
 struct VotingView_Previews: PreviewProvider {
     static var previews: some View {
-        VotingView()
+        VotingView(votingData: self.votingData)
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
+*/

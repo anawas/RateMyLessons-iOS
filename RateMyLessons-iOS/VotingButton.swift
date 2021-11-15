@@ -13,20 +13,21 @@ let systemSoundID: SystemSoundID = 1104  // System sound Tock
 struct VotingButton: View {
     let buttonSize = UIScreen.main.bounds.width / 6.0 + 20
     let verdict: String
-    @ObservedObject var votingVM = VotingsVewModel()
+    
+    @ObservedObject var votingVM: VotingsViewModel
 
     var body: some View {
         Button {
             print("Button \(verdict) pressed")
             AudioServicesPlaySystemSound(systemSoundID)
-            votingVM.increaseVote(verdict: verdict)
+            votingVM.increaseVote(verdict: self.verdict)
         } label: {
             ZStack {
-            Image("pushbutton " + verdict)
+                Image("pushbutton " + self.verdict)
                 .resizable().aspectRatio(contentMode: .fill)
                 .frame(width: buttonSize, height: buttonSize)
                 .rotationEffect(.degrees(-20.0))
-            Text("\(translations[verdict]!)")
+                Text("\(translations[self.verdict]!)")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -36,8 +37,10 @@ struct VotingButton: View {
     }
 }
 
+/*
 struct VotingButton_Previews: PreviewProvider {
     static var previews: some View {
         VotingButton(verdict: "very good")
     }
 }
+*/

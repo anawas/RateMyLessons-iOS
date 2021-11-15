@@ -7,49 +7,6 @@
 
 import SwiftUI
 
-class Vote: Identifiable {
-    
-    let id = UUID()
-    var verdict: String
-    var count: Int
-    
-    init(verdict: String) {
-        self.verdict = verdict
-        self.count = 0
-    }
-    
-    func getVerdict() -> String {
-        return self.verdict
-    }
-}
-
-class VotingsVewModel: ObservableObject {
-    @Published var votings: [Vote] = [
-        .init(verdict: "very good"),
-        .init(verdict: "good"),
-        .init(verdict: "ok"),
-        .init(verdict: "bad"),
-        .init(verdict: "very bad")]
-    
-    func increaseVote(verdict: String) -> Void {
-        for vote in votings {
-            if vote.verdict == verdict {
-                print("Updating verdict: \(vote.verdict)")
-                vote.count += 1
-            }
-        }
-    }
-    
-    func countVotes() -> Int {
-        var sum: Int = 0
-        for vote in votings {
-            sum += vote.count
-        }
-        return sum
-    }
-}
-
-
 let translations: [String:String] = [
     "very good": "inspirierend",
     "good": "gut",
@@ -63,16 +20,15 @@ struct ContentView: View {
     @State var numberOfClicks: Int = 0
     @State var showDummyView: Bool = false
     @State var icon: String = "chevron.right.circle"
- 
-    let evaluationView: some View = EvaluationView()
-    let votingView: some View = VotingView()
+    
+    @StateObject var votingVM = VotingsViewModel()
 
     var body: some View {
         VStack {
             if showDummyView {
-                evaluationView
+                EvaluationView(votingData: votingVM)
             } else {
-                votingView
+                VotingView(votingData: votingVM)
             }
             Spacer()
             HStack{
@@ -102,6 +58,7 @@ struct ContentView: View {
     }
 }
 
+
 struct NextViewButton: View {
     @State var numberOfClicks: Int = 0
     @State var timer: Timer?
@@ -127,7 +84,7 @@ struct NextViewButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        VotingView()
+        VotingView(votingData: VotingsViewModel())
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
