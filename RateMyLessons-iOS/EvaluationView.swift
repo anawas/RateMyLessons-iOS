@@ -10,6 +10,11 @@ import SwiftUI
 struct EvaluationView: View {
     @ObservedObject var votingData: VotingsViewModel
 
+    init(votingData: VotingsViewModel) {
+        UITableView.appearance().backgroundColor = .clear
+        self.votingData = votingData
+    }
+    
     var body: some View {
         return VStack {
             Spacer()
@@ -22,12 +27,12 @@ struct EvaluationView: View {
                     HStack {
                         Text(vote.verdict)
                             .font(.title)
-                            .fontWeight(.bold)
-                        
+                            .fontWeight(.semibold)
+                        Spacer()
                         Text("\(vote.count)")
                             .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(.red)
+                            .fontWeight(.semibold)
+                            
                     }
                 }
                 HStack {
@@ -37,8 +42,11 @@ struct EvaluationView: View {
                     Text(String(format: "%.1f", self.votingData.averageRating))
                         .font(.title)
                         .fontWeight(.bold)
-                }
-            }.padding(100)
+                }.padding([.top, .bottom, .trailing], 50)
+                
+            }.frame(width: 800.0, height: 700.0)
+                .background(Color.white)
+
             Spacer()
             Button(action: {
                 votingData.resetCounter()
