@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EvaluationView: View {
     @ObservedObject var votingData: VotingsViewModel
+    var translations = ["very good":"sehr gut", "good": "gut", "ok": "ok", "bad":"schlecht", "very bad":"sehr schlecht"]
 
     var body: some View {
         return VStack {
@@ -18,7 +19,7 @@ struct EvaluationView: View {
                 .fontWeight(.bold)
             Spacer()
             ForEach(self.votingData.votings) { vote in
-                Text("\(vote.verdict): \(vote.count)")
+                Text("\(translations[vote.verdict] ?? " "): \(vote.count)")
                     .font(.title)
                     .fontWeight(.bold)
             }
